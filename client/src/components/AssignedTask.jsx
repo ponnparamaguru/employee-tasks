@@ -7,7 +7,7 @@ function AssignedTasks() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/tasks');
+        const response = await axios.get('https://employee-tasks.onrender.com/api/tasks');
         setTasks(response.data);
       } catch (err) {
         console.error(err);

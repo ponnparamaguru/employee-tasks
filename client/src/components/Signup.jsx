@@ -16,7 +16,7 @@ function Signup() {
     setError('');
     setSuccess(''); 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { username, password, role });
+      await axios.post('https://employee-tasks.onrender.com/api/auth/register', { username, password, role });
       setSuccess('Account created successfully!');
       setTimeout(() => navigate('/login'), 1000); 
     } catch (err) {

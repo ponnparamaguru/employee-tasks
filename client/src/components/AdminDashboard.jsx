@@ -8,7 +8,7 @@ function AdminDashboard() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/tasks');
+        const response = await axios.get('https://employee-tasks.onrender.com/api/tasks');
         setTasks(response.data); 
       } catch (err) {
         console.error(err);
@@ -17,7 +17,7 @@ function AdminDashboard() {
 
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/employees');
+        const response = await axios.get('https://employee-tasks.onrender.com/api/employees');
         setEmployees(response.data); 
       } catch (err) {
         console.error(err);

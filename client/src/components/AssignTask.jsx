@@ -11,7 +11,7 @@ function AssignTask() {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/employees');
+        const response = await axios.get('https://employee-tasks.onrender.com/api/employees');
         setEmployees(response.data);
       } catch (err) {
         console.error(err);
@@ -23,7 +23,7 @@ function AssignTask() {
 
   const assignTask = async () => {
     try {
-      await axios.post('http://localhost:5000/api/tasks/assign', {
+      await axios.post('https://employee-tasks.onrender.com/api/tasks/assign', {
         title: taskTitle,
         description: taskDescription,
         employeeId: selectedEmployee

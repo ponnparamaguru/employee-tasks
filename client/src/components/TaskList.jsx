@@ -10,7 +10,7 @@ const TaskList = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/tasks/tasks', {
+      const response = await axios.get('https://employee-tasks.onrender.com/api/tasks/tasks', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -23,7 +23,7 @@ const TaskList = () => {
 
   const handleStart = async (taskId) => {
     try {
-      await axios.post(`http://localhost:5000/api/tasks/${taskId}/start`, {}, {
+      await axios.post(`https://employee-tasks.onrender.com/api/tasks/${taskId}/start`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -36,7 +36,7 @@ const TaskList = () => {
 
   const handleStop = async (taskId) => {
     try {
-      await axios.post(`http://localhost:5000/api/tasks/${taskId}/stop`, {}, {
+      await axios.post(`https://employee-tasks.onrender.com/api/tasks/${taskId}/stop`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
