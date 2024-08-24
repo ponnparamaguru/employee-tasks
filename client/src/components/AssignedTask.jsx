@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaTrash } from 'react-icons/fa';
 
 function AssignedTasks() {
   const [tasks, setTasks] = useState([]);
@@ -7,7 +8,7 @@ function AssignedTasks() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('https://employee-tasks.onrender.com/api/tasks');
+        const response = await axios.get('https://employee-tasks.onrender.com/api/tasks/employee/me/api/tasks');
         setTasks(response.data);
       } catch (err) {
         console.error(err);
@@ -25,11 +26,11 @@ function AssignedTasks() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'completed':
-        return 'text-green-500'; // Green color for completed
+        return 'text-green-500'; 
       case 'in-progress':
-        return 'text-yellow-500'; // Yellow color for in-progress
+        return 'text-yellow-500'; 
       default:
-        return 'text-gray-500'; // Gray color for yet to start
+        return 'text-gray-500'; 
     }
   };
 
@@ -37,7 +38,16 @@ function AssignedTasks() {
     if (timeSpent > 0) {
       return 'Completed';
     } else {
-      return 'Yet to Start';
+      return 'Not Completed';
+    }
+  };
+
+  const deleteTask = async (taskId) => {
+    try {
+      await axios.delete(`https://employee-tasks.onrender.com/api/tasks/employee/me/api/tasks/delete/${taskId}`);
+      setTasks(tasks.filter(task => task._id !== taskId)); 
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -71,6 +81,12 @@ function AssignedTasks() {
                     <p className={`mt-2 ${getStatusColor(task.timeSpent > 0 ? 'completed' : 'yet-to-start')}`}>
                       {getStatusLabel(task.timeSpent)}
                     </p>
+                    <button
+                      onClick={() => deleteTask(task._id)}
+                      className="mt-4 bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                      <FaTrash />
+                    </button>
                   </div>
                 </div>
               ))}

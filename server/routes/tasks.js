@@ -77,6 +77,22 @@ router.patch('/tasks/update/:id', async (req, res) => {
     }
   });
 
+  router.delete('/tasks/delete/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      const deletedTask = await Task.findByIdAndDelete(id);
+  
+      if (!deletedTask) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      res.json({ message: 'Task deleted successfully', task: deletedTask });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
   router.get('/tasks', async (req, res) => {
     try {
       const tasks = await Task.find().populate('assignedTo', 'username');
