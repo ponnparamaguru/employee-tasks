@@ -1,0 +1,15 @@
+.custom-select {
+    appearance: none; /* Remove default styling */
+    background-color: #f0fdfa; /* Tailwind bg-lime-50 */
+  }
+  
+  .custom-select:focus {
+    background-color: #84cc16; /* Tailwind bg-lime-500 */
+    color: white; /* Tailwind text-white */
+    outline: none;
+  }
+  
+  .custom-select option {
+    background-color: #84cc16; /* Tailwind bg-lime-500 */
+    color: white; /* Tailwind text-white */
+  }
